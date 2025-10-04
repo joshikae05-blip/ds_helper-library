@@ -11,7 +11,7 @@ data = {
 }
 df = pd.DataFrame(data)
 
-def detect_column_types_simple(dataframe):
+def detect_column_types(dataframe):
     column_types = {}
     for column in dataframe.columns:
         dtype = dataframe[column].dtype
@@ -29,42 +29,42 @@ def detect_column_types_simple(dataframe):
                  column_types[column] = 'Categorical'
     return column_types
 
-def visualize(dataframe):
-    column_types = detect_column_types_simple(dataframe)
+
+def auto_visualize(dataframe: pd.DataFrame):
+    """
+    Generates appropriate plots for each column in a DataFrame based on its detected type.
+    """
+    # Now it can correctly call the function from the other module
+    column_types = detect_column_types(dataframe)
 
     for column, col_type in column_types.items():
-        print(f"\n> Generating plot for '{column}' (Type: {col_type})")
+        print(f"\n> Plotting for '{column}' (Type: {col_type})")
 
         if col_type == 'Numerical':
-            plt.figure()
-            sns.histplot(dataframe[column])
-            plt.title(f'Histogram for {column}')
-            plt.show()
+            plt.figure(figsize=(12, 5))
+            plt.subplot(1, 2, 1)
+            sns.histplot(dataframe[column], kde=True)
+            plt.title(f'Histogram of {column}')
 
-            plt.figure()
+            plt.subplot(1, 2, 2)
             sns.boxplot(x=dataframe[column])
-            plt.title(f'Boxplot for {column}')
+            plt.title(f'Boxplot of {column}')
+            plt.tight_layout()
             plt.show()
 
-        
         elif col_type == 'Categorical':
-            plt.figure(figsize=(8, 5))
-            sns.countplot(x=dataframe[column])
-            plt.title(f'Count Plot for {column}')
-            plt.xticks(rotation=45)
+            plt.figure(figsize=(10, 6))
+            sns.countplot(y=dataframe[column], order=dataframe[column].value_counts().index)
+            plt.title(f'Count Plot of {column}')
             plt.show()
 
-        
         elif col_type == 'Text':
-            
             all_words = dataframe[column].str.cat(sep=' ').lower().split()
             word_counts = pd.Series(all_words).value_counts().head(15)
-
+            
             plt.figure(figsize=(10, 6))
             sns.barplot(x=word_counts.values, y=word_counts.index)
-            plt.title(f'Top 15 Most Frequent Words in {column}')
-            plt.xlabel('Frequency (Count)')
-            plt.ylabel('Words')
+            plt.title(f'Top 15 Words in {column}')
             plt.show()
 
-visualize(df)
+auto_visualize(df)
