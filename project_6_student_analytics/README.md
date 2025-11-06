@@ -1,19 +1,19 @@
-Project 6: Student Pass/Fail Predictor
+**Project 6: Student Pass/Fail Predictor**
 
 This project builds a complete system to predict whether a student will pass or fail.
 
 It starts by creating a database for student information (like grades and attendance). Then, it uses Python to take that data, analyze it, and build a machine learning model. The final model can look at a student's attendance and marks to guess their final outcome.
 
- 🚀 Project Goal
+ **🚀 Project Goal**
 
 The main goal was to practice combining database skills (SQL) with data science (Python and Machine Learning).
 
-This involved:
+**This involved:**
  Designing a clean database for student info.
  Using SQL to analyze the student data.
  Building a predictive model to guess if a student will pass or fail.
 
- 🛠️ Technology Used
+ **🛠️ Technology Used**
 
  Database: MySQL
  Database Tool: MySQL Workbench
@@ -21,7 +21,7 @@ This involved:
  Plotting: Matplotlib & Seaborn
  Notebook: Jupyter Notebook
 
- 📁 What's in this Folder?
+ **📁 What's in this Folder?**
 
 This folder contains the three final files for the project:
 
@@ -29,7 +29,7 @@ This folder contains the three final files for the project:
 2.  `ml_analysis.ipynb`: This is the Jupyter Notebook. It connects to the database, pulls the data, cleans it up, and then builds, trains, and tests the machine learning model. It also has the code to create the final plots.
 3.  `Report.pdf`: This is a simple report that summarizes the entire project. It includes the database diagram, key findings, and final charts.
 
- 📈 Key Findings
+ **📈 Key Findings**
 
 The project was a success! Here are the main takeaways:
 
